@@ -4,27 +4,25 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
-// Import motion.div dynamically to avoid SSR issues
+// Import motion only on the client
 const MotionDiv = dynamic(
   () => import("framer-motion").then((mod) => mod.motion.div),
   { ssr: false }
 );
 
-// Mock data (replace with API/CMS later)
+// Static data (replace with API later)
 const posts = [
   { id: "1", title: "Welcome to Our Community", content: "Full content here...", image: "/images/post1.jpg" },
   { id: "2", title: "Meet the Members", content: "Full content here...", image: "/images/post2.jpg" },
 ];
 
-// Tell Next.js which pages to build at compile time
+// Tell Next.js which routes to build
 export function generateStaticParams() {
-  return posts.map((post) => ({ id: post.id }));
+  return posts.map((p) => ({ id: p.id }));
 }
 
 export default function PostPage({ params }: { params: { id: string } }) {
   const post = posts.find((p) => p.id === params.id);
-
-  // Show 404 if post not found
   if (!post) return notFound();
 
   return (
@@ -36,7 +34,7 @@ export default function PostPage({ params }: { params: { id: string } }) {
           transition={{ duration: 0.5 }}
         >
           <Image
-            src={post.image || "/images/default.jpg"} // fallback image
+            src={post.image || "/images/default.jpg"}
             alt={post.title}
             width={800}
             height={400}
