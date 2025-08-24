@@ -61,10 +61,10 @@ export default function Navbar() {
         <button
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
-          className="md:hidden p-2 rounded-lg hover:bg-slate-100"
+          className= "md:hidden p-2 rounded-lg hover:bg-gray-700 transition-colors"
           onClick={() => setOpen((v) => !v)}
         >
-          {open ? <X className="h-6 w-6 text-gray-900" /> : <Menu className="h-6 w-6 text-gray-900" />}
+          {open ? <X className="h-6 w-6 text-gray-500" /> : <Menu className="h-6 w-6 text-white" />}
         </button>
       </nav>
 
@@ -74,14 +74,14 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden border-t border-slate-200 bg-white"
+            className="md:hidden border-t border-slate-200 bg-gray-800"
           >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col gap-3">
               {links.map((l) => (
                 <Link
                   key={l.href}
                   href={l.href}
-                  className="py-2 text-slate-700 hover:text-emerald-600"
+                  className="py-2 text-white hover:text-emerald-600"
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
