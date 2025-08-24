@@ -1,3 +1,5 @@
+"use client";
+
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -8,11 +10,6 @@ const posts = [
   { id: '2', title: 'Meet the Members', content: 'Full content here...', image: '/images/post2.jpg' },
   { id: '3', title: 'Upcoming Events', content: 'Full content here...', image: '/images/post3.jpg' },
 ];
-
-// ADD THIS ONE FUNCTION - 3 lines of code!
-export async function generateStaticParams() {
-  return posts.map((post) => ({ id: post.id }));
-}
 
 export default function PostPage({ params }: { params: { id: string } }) {
   const post = posts.find((p) => p.id === params.id);
