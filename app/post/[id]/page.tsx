@@ -3,12 +3,18 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import dynamic from "next/dynamic";
 
 // Mock data (replace with API/CMS later)
 const posts = [
   { id: '1', title: 'Welcome to Our Community', content: 'Full content here...', image: '/images/post1.jpg' },
   { id: '2', title: 'Meet the Members', content: 'Full content here...', image: '/images/post2.jpg' },
 ];
+
+const MotionDiv = dynamic(
+  () => import("framer-motion").then((mod) => mod.motion.div),
+  { ssr: false }
+);
 
 export default function PostPage({ params }: { params: { id: string } }) {
   const post = posts.find((p) => p.id === params.id);
