@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 const posts = [
   { id: '1', title: 'Welcome to Our Community', content: 'Full content here...', image: '/images/post1.jpg' },
   { id: '2', title: 'Meet the Members', content: 'Full content here...', image: '/images/post2.jpg' },
-  { id: '3', title: 'Upcoming Events', content: 'Full content here...', image: '/images/post3.jpg' },
 ];
 
 export default function PostPage({ params }: { params: { id: string } }) {
